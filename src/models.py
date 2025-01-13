@@ -80,7 +80,7 @@ def normalize_data(X,X_pred):
 
 # predict
 def predict(X_normalized, y_normalized, X_pred_normalized):
-    reg = xgb.XGBRegressor(n_estimators=1000, learning_rate=0.01)
+    reg = xgb.XGBRegressor(n_estimators=1000, learning_rate=0.01) # small learning rate to avoid overfitting
     reg.fit(X_normalized, y_normalized, verbose=False)
     y_pred = reg.predict(X_pred_normalized)
     return y_pred

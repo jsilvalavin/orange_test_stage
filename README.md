@@ -1,5 +1,5 @@
 # README
-Le présent dépôt contient les fichiers nécessaires pour l'étude et la prediction de la vente des modèles de téléphone démandés. Le dépôt contient les fichiers suivants:
+Le présent dépôt contient les fichiers nécessaires pour l'étude et la prediction de la vente des modèles de téléphone démandés par séries temporelles. Le dépôt contient les fichiers suivants:
 
 - Dossier data
     - 'telecom_sales_data.csv': données de vente des modèles de téléphone avec les variables suivantes, indexées par la date, entre 2019-01-01 et 2024-12-31:
@@ -46,3 +46,17 @@ La éxecution du code peut être, plus facilement réalisée dans google colab.
 Pour l'exploration et la modélisation des données, il suffit d'ouvrir les notebooks 'exploration.ipynb' et 'modeling.ipynb' dans un environnement de jupyter notebook et d'exécuter les cellules du notebook. Est important d'éxecuter les cellules dans l'ordre pour éviter des erreurs. 
 
 Pour lancer le traitement des données, la création des nouvelles variables, la modélisation des données et la prédiction des variables cibles, il suffit d'exécuter le script '__main__.py' dans un terminal. Ce fichier donnera l'election de la ville pour laquelle on veut faire la prédiction des variables cibles. Les prédictions des variables cibles,  sont stockées dans le dossier 'predictions' sous le nom 'predictions_ville.csv' et les données prédits sont montrés dans un graphique.
+
+# Explication fonctions du dossier src
+- 'data_processing.py': 
+    - data_processiing(): fonction qui lit les données, fixe la date comme index, transforme les variables catégorielles en variables numériques et remplit les NA dans la colonne 'tech_event' et retourne les données traitées.
+
+- 'feature_engineering.py': 
+    - feature_engineering(): fonction qui crée les variables 'year', 'month', 'ordinal', 'dayofweek', 'weekofyear', 'quarter' à partir de la date et retourne les données avec les nouvelles variables. Retourne les donnees avec les nouvelles variables.
+
+- 'modeling.py':
+    - normalize(X,y): fonction qui normalise y en utilisant une regrrssion linéaire selon la colonne ordinal de X et retourne y normalisé moins la prediction linéaire. Importante car les series temporelles ont besoin de stationnarité.
+    - predict_vars(X,future_index): fonction qui prédit les variables predicteurs en normalisant et en utilisant une serie temporelle et retourne les variables prédites.
+    - predict(X_normalized,y_normalized, X_pred_normalized): fonction qui prédit y en utilisant une serie temporelle et retourne les predictions d'y.
+    - predict_city(city): fonction qui prédit les variables cibles (les modèles de téléphone) pour la ville choisie et retourne les prédictions des variables cibles comme un dataframe.
+

@@ -11,7 +11,7 @@ if __name__ == "__main__":
     for i in range(len(cities)):
         print(f'{i+1}. {cities[i]}')
     input_ = int(input('Enter the number of the city: '))-1
-    while input_ == 0 or input_ > len(cities):
+    while input_ > len(cities):
         'Invalid input. Try again'
         input_ = int(input('Enter the number of the city: '))-1
     city = cities[input_]
